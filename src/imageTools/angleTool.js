@@ -152,6 +152,9 @@ function onImageRendered (e) {
 
     angle *= (180 / Math.PI);
 
+    // Expose computed angle
+    data.angle = angle;
+
     const rAngle = roundToDecimal(angle, 2);
     const str = '00B0'; // Degrees symbol
     const text = rAngle.toString() + String.fromCharCode(parseInt(str, 16));

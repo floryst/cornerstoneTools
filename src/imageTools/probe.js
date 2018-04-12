@@ -92,6 +92,12 @@ function onImageRendered (e) {
       text = `${x}, ${y}`;
       storedPixels = getRGBPixels(eventData.element, x, y, 1, 1);
       str = `R: ${storedPixels[0]} G: ${storedPixels[1]} B: ${storedPixels[2]}`;
+
+      // Store data on measurement
+      data.pixel = {
+        type: 'color',
+        value: storedPixels
+      };
     } else {
       storedPixels = cornerstone.getStoredPixels(eventData.element, x, y, 1, 1);
       const sp = storedPixels[0];
@@ -104,6 +110,15 @@ function onImageRendered (e) {
       if (suv) {
         str += ` SUV: ${parseFloat(suv.toFixed(3))}`;
       }
+
+      // Store data on measurement
+      data.pixel = {
+        type: 'grayscale',
+        value: {
+          sp,
+          mo
+        }
+      };
     }
 
     const coords = {
